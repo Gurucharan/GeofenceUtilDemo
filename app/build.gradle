@@ -1,0 +1,68 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 29
+
+    defaultConfig {
+        applicationId "com.doodleblue.geofenceutildemo"
+        minSdkVersion 16
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        vectorDrawables.useSupportLibrary = true
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    buildFeatures {
+        dataBinding = true
+        viewBinding = true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+}
+
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "androidx.core:core-ktx:${coreKtxVersion}"
+    implementation "androidx.appcompat:appcompat:${appcompatVersion}"
+    // Material Design Component
+    implementation "com.google.android.material:material:${materialVersion}"
+    implementation "androidx.constraintlayout:constraintlayout:${constraintlayoutVersion}"
+    implementation "androidx.navigation:navigation-fragment-ktx:${navigationFragmentKtxVersion}"
+    implementation "androidx.navigation:navigation-ui-ktx:${navigationUiKtxVersion}"
+    // ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${lifecycleViewmodelKtxVersion}"
+    // LiveData
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:${lifecycleLivedataKtxVersion}"
+    // Room Database
+    implementation "androidx.room:room-runtime:${roomRuntimeVersion}"
+    kapt "androidx.room:room-compiler:${roomCompilerVersion}"
+    implementation "androidx.room:room-ktx:${roomKtxVersion}"
+    implementation "com.google.android.gms:play-services-location:${playServicesLocationVersion}"
+    implementation "com.google.code.gson:gson:${gsonVersion}"
+    implementation "com.google.dagger:dagger:${daggerVersion}"
+    kapt "com.google.dagger:dagger-compiler:${daggerCompilerVersion}"
+
+    testImplementation "junit:junit:${junitVersion1}"
+    androidTestImplementation "androidx.test.ext:junit:${junitVersion}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${espressoCoreVersion}"
+}
